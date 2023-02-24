@@ -1,0 +1,135 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+
+</script>
+
+<body>
+  <%  mesage = message %>
+  <%  Commodityid = commodities[0].id %>
+  <% commodityName = commodities[0].name %>
+  <% commodities = commodities[0].commodities %>
+
+
+  <h1 id="id"> <%=  Commodityid %></h1>
+<% if(message==undefined || message== null || meassge==''){ %>
+
+  <% return alert('no message to display') %>
+
+   <%} else { %>
+    
+    <% return alert(message) %>
+
+    <% } %>
+
+
+
+  <table>
+    <tr>
+      <th>COMMODITY NAME</th>
+      <th>PRICE</th>
+    </tr>
+
+    <% if(commodities.length > 0){  %>
+
+    <% commodities.forEach(commod=>{ %>
+
+    <tr class="commod_block">
+
+      <td class="commod"><%= commod.name %></td>
+      <td class="price" data-price="<%= commod.name %>" contenteditable><%= commod.price %></td>
+      <td><button class="delete" data-doc="<%= commod.name %>" id="<%= commod.id %>"><a>DELETE</a></button> </td>
+    </tr>
+
+    <% }) %>
+
+    <% } else { %>
+
+    <p>no commodity to display</p>
+    <% } %>
+
+  </table>
+
+  <% var comm_odities = commodities; %>
+
+  <button> <a href="/admin/addcommodity">ADD COMMODITY</a></button> <button id="update">UPDATE</button>
+  <SCript>
+    const deletebtns = Array.from(document.getElementsByClassName('delete'))
+
+    const commodBlock = Array.from(document.getElementsByClassName("commod_block"));
+    const commodities = Array.from(document.getElementsByClassName("commod"));
+    const price = Array.from(document.getElementsByClassName("price"));
+    const upDate = document.getElementById("update")
+    let Document_id=document.getElementById("id").innerText
+
+    let box = []
+
+
+
+    deletebtns.forEach(deletebtn => {
+      deletebtn.addEventListener("click", () => {
+       let id=deletebtn.id
+        console.log(deletebtn.id)
+        console.log(deletebtn.dataset.doc)
+        fetch(`/admin/delete:${Document_id}/commodities/:${id}`, {method:'DELETE' })
+          // .then(response => response.json())
+          // .then(response => console.log(JSON.stringify(response)))
+      })
+    })
+
+    upDate.addEventListener("click", () => {
+      commodBlock.forEach((commod) => {
+        let name = commod.querySelector(".commod").textContent
+        let price = commod.querySelector(".price").textContent
+
+        box.push({
+          name: name,
+          price: price
+        })
+
+      })
+      // console.log(box)
+      fetch('/admin/updateAll', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            commodities: box
+          })
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+    })
+  </SCript>
+
+
+</body>
+<script>
+  //  const findPercentages= (commodity)=>{
+  //     const prices= Array.from(document.querySelectorAll(".price"));
+  //     const comm_odity= Array.from(document.querySelectorAll(".commod"))
+
+  //     prices.map(price=>{
+  //       console.log(price)
+  //     })
+
+  //     comm_odity.forEach((commodity)=>{
+  //       console.log(commodity.textContent)
+  //     })
+  //     document.getElementById("myBtn").addEventListener("click", ()=>{
+  //       findPercentages()
+  //     })
+
+  //   }
+
+  //   findPercentages()
+  //  var COMMODITIES =   
+</script>
+
+</html>

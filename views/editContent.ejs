@@ -1,0 +1,32 @@
+<table>
+    <tr>
+      <th>COMMODITY NAME</th>
+      <th>PRICE</th>
+      <th>%HOUR</th>
+      <th>%24hours</th>
+      <th>%7D</th>
+      <th>%30d</th>
+    </tr>
+
+    <% if(commodity.length > 0){  %>
+
+     <% commodity.forEach(commod=>{ %>
+    <tr> 
+      <td><%= commod.commodityName %></td>
+      <td contenteditable><%= commod.price %></td>
+      <td><%= commod.percentage1hr %></td>
+      <td><%= commod.percentage24hr %></td>
+      <td><%= commod.percentage7D %></td>
+      <td><%= commod.percentage30d %></td>
+     </tr>
+
+    <% }) %> 
+
+    <% } else { %>
+
+    <p>no commodity to display</p>
+    <% } %>
+
+  </table>
+
+  <button>EDIT</button>
