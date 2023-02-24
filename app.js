@@ -8,6 +8,10 @@ const adminroutes = require("./routes/adminroutes")
 // const { db } = require('./models/commodity');
 const app=express()
 app.use(express.json())
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
 app.set('view engine', 'ejs');
 const port=process.env.PORT || 3000;
 
