@@ -3,8 +3,8 @@ const express=require('express');
 const ejs=require('ejs')
 require('dotenv').config();
 const mongoose=require('mongoose')
-const Commodity= require("../models/commodity");
-const adminroutes = require("../routes/adminroutes")
+const Commodity= require("./models/commodity");
+const adminroutes = require("./routes/adminroutes")
 // const { db } = require('./models/commodity');
 const app=express()
 app.use(express.json())
