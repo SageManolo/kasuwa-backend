@@ -108,7 +108,9 @@ router.delete("/delete:id/commodities/:item_id", (req, res) => {
 })
 .then(result=>{     
   console.log(result) 
- return res.render("index", { commodities: result });
+//  return res.render("index", { commodities: result });
+res.redirect("/admin");
+
 
 }).catch(err=>console.log(err)) 
 

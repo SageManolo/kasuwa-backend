@@ -3,13 +3,13 @@ const express=require('express');
 const ejs=require('ejs')
 require('dotenv').config();
 const mongoose=require('mongoose')
-const Commodity= require("./models/commodity");
-const adminroutes = require("./routes/adminroutes")
+const Commodity= require("../models/commodity");
+const adminroutes = require("../routes/adminroutes")
 // const { db } = require('./models/commodity');
 const app=express()
 app.use(express.json())
 app.set('view engine', 'ejs');
-const port=process.env.PORT;
+const port=process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 const dbURI=process.env.KASUWA_dbURI
 app.use(express.static('public'))
 
-// mongoose.set('strictQuery', true);
+// mongoose.set('strictQuery', true);  
 mongoose.connect(dbURI, {useNewurlParser:true,useUnifiedTopology:true,})
 .then(()=>console.log("connected to db"))
 .catch((err)=>console.log(err))   
@@ -45,3 +45,4 @@ app.listen(port, () => {
 
 
 
+  
