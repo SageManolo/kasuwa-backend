@@ -18,8 +18,8 @@ router.post("/login", (req, res) => {
   console.log(password);
 
   try {
-    const { uername, password, token } = req.body;
-    const user = username;
+    const { uername, password } = req.body;
+    const user = req.body;
     console.log(user);
 
     if (!(username && password)) {
@@ -31,11 +31,16 @@ router.post("/login", (req, res) => {
       res.status(400).send("Unauthorized Access");
     }
     if (username == process.env.USER_ID && password == process.env.USER_KEY) {
-      const token = jwt.sign(user, process.env.TOKEN_KEY);
-      // res.cookie("x-access-token",token, { maxAge: 60*60 })
-      console.log(token);
+      const accessToken = jwt.sign({username:user.username, password:user.password}, process.env.TOKEN_KEY);
+
+      res.cookie("kasuwa-access",accessToken, { maxAge: 1000*60*60 })
+      // return res.json(accessToken);
+
       return res.redirect("/admin");
-      // res.cookie("x-access-token",token, { maxAge: 60*60 })
+    }
+    else{
+    return res.status(400).send("cant validate request");
+
     }
   } catch (err) {
     return res.status(400).send("Invalid Credentials");
@@ -43,7 +48,7 @@ router.post("/login", (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/",auth, async (req, res) => {
   try {
     Commodity.find()
       .sort({ _id: -1 })
@@ -56,12 +61,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/addcommodity", (req, res) => {
+router.get("/addcommodity",auth, (req, res) => {
   res.render("addcommodity",);
 });
 
 
-router.post("/addcommodity", (req, res) => {
+router.post("/addcommodity",auth, (req, res) => {
   const newCommodity = Commodity.find()
     .sort({ _id: -1 })
     .findOneAndUpdate(
@@ -80,7 +85,7 @@ router.post("/addcommodity", (req, res) => {
     );
 });
  
-router.post("/updateAll", (req, res) => {
+router.post("/updateAll",auth, (req, res) => {
   // console.log(req.body);
   const newCommodity = Commodity.create({
     name: "commodities",
@@ -95,7 +100,7 @@ router.post("/updateAll", (req, res) => {
     });
 });
 
-router.delete("/delete:id/commodities/:item_id", (req, res) => {
+router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
   let Object_id = req.params.id.slice(1);
   let commod_id = req.params.item_id.slice(1);
   console.log(Object_id)

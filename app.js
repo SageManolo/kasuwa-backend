@@ -5,9 +5,12 @@ require('dotenv').config();
 const mongoose=require('mongoose')
 const Commodity= require("./models/commodity");
 const adminroutes = require("./routes/adminroutes")
-// const { db } = require('./models/commodity');
 const app=express()
+const cookieParser = require('cookie-parser');
+
+
 app.use(express.json())
+app.use(cookieParser())
 const cors = require('cors');
 app.use(cors({
     origin: '*'

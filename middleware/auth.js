@@ -2,19 +2,27 @@ const jwt = require("jsonwebtoken")
 require('dotenv').config();
 
 const auth = (req, res, next)=>{
-  const authHeader =req.headers["authorization"]
+  const accessToken = req.cookies['kasuwa-access']
 
-  console.log(authHeader)
-   const token = authHeader && authHeader.split(' ')[1]
-   if (token == null) return res.sendStatus(401)
+   if (accessToken == null) return res.sendStatus(401)
+   if (!accessToken) return res.Status(401).json({ERROR:"ACCESS DENIED"})
 
-   console.log("token")
+   try{
+    const validToken = jwt.verify(accessToken, process.env.TOKEN_KEY)
+    if(validToken){
+      req.authenticated= true
+      return next();
 
-   jwt.verify(token, process.env.TOKEN_KEY,  (err, user)=>{
-    if (err) return res.sendStatus(403)
-    req.user = user
-    next()
-   })
+    }
+   }
+   catch(err){
+    return res.status(400).json({error:"access denied"})
+   }
+  //  jwt.verify(accessToken, process.env.TOKEN_KEY,  (err, user)=>{
+  //   if (err) return res.sendStatus(403)
+  //   req.body = user
+  //   next()
+  //  })
 }
 
 module.exports = auth;
