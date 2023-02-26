@@ -1,25 +1,34 @@
 <!-- Latest compiled and minified CSS -->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<div>
-    <form action="/admin/addcommodity" method="POST">
 
-        <div>
-            <label for="name">COMMODITY </label>
-            <input type="name" id="name" name="name" style="text-transform: lowercase"  placeholder="Enter price" required/>
+<style>
+
+  body{
+    font-size: 30px;
+  }  
+</style>
+<body style="display:flex; align-items: center;">
+
+  <div class="container-fluid">
+    <div class="row vertical-center">
+      <form action="/admin/addcommodity" method="POST">
+
+        <div class="form-group">
+          <label for="name">COMMODITY </label>
+          <input type="name" id="name" name="name" style="text-transform: lowercase" placeholder="commodity name here" required class="form-control" />
         </div>
-          
-        <div>
-            <label for="price">PRICE </label>
-            <input type="number" id="nice" name="price"  placeholder="Enter price" required/>
+
+        <div class="form-group">
+          <label for="price">PRICE </label>
+          <input type="number" id="nice" name="price" placeholder="commodity price here" required class="form-control" />
         </div>
+        
+        <button type="submit" class="btn btn-success big-button">ADD</button> <a href="/admin" role="button"class="btn btn-primary big-button">HOME</a>
+      </form>
+    </div>
+  </div>
 
-        <button type="submit">ADD</button> <button><a href="/admin">HOME</a> </button>
-    </form>
 
-    <script>
-        const lowercase = ()=>{
-            this.value.lowercase()
-        }
-    </script>
-</div>
+</body>

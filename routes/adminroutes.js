@@ -90,7 +90,7 @@ router.post("/updateAll",auth, (req, res) => {
     commodities: req.body.commodities,
   })
     .then((result) => {
-      result.save();
+      result.save();  
       return res.json(result)
     })
     .catch((err) => {
@@ -101,8 +101,7 @@ router.post("/updateAll",auth, (req, res) => {
 router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
   let Object_id = req.params.id.slice(1);
   let commod_id = req.params.item_id.slice(1);
-  console.log(Object_id)
-  console.log(commod_id)
+
 
   const newCommodity = Commodity.findByIdAndUpdate({ _id:Object_id}, {
     $pull: {
@@ -110,6 +109,11 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
     },
 })
 .then(result=>{
+  if(result.commodities.length==1){
+    result.remove()
+
+  }
+  console.log(result)
   res.json(result)
 
 }).catch(err=>console.log(err)) 
