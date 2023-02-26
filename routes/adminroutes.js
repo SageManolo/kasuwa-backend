@@ -14,8 +14,8 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   console.log("got a log in request");
   const { username, password } = req.body;
-  console.log(username);
-  console.log(password);
+  // console.log(username);
+  // console.log(password);
 
   try {
     const { uername, password } = req.body;
@@ -34,7 +34,7 @@ router.post("/login", (req, res) => {
       const accessToken = jwt.sign({username:user.username, password:user.password}, process.env.TOKEN_KEY);
 
       res.cookie("kasuwa-access",accessToken, { maxAge: 1000*60*60 })
-      // return res.json(accessToken);
+      // res.render("index", {message:"welcome" });
 
       return res.redirect("/admin");
     }
@@ -54,7 +54,7 @@ router.get("/",auth, async (req, res) => {
       .sort({ _id: -1 })
       .limit(1)
       .then((result) => {
-        res.render("index", { commodities: result, message:"welcome" });
+        res.render("index", { commodities: result, message:"ENSURE TO VALIDATE EVERY DELETE BY UPDATING THE DATABASE ON DELETING A COMMODITY" });
       });
   } catch (err) {
     res.status(500).json({message:err.message})
@@ -79,21 +79,19 @@ router.post("/addcommodity",auth, (req, res) => {
         } else {
           res.redirect("/admin");
 
-          //   res.send(`item sucessfully added <a href='/admin'>home<a/>`)
         }
       } 
     );
 });
  
 router.post("/updateAll",auth, (req, res) => {
-  // console.log(req.body);
   const newCommodity = Commodity.create({
     name: "commodities",
     commodities: req.body.commodities,
   })
     .then((result) => {
       result.save();
-      // console.log(result);
+      return res.json(result)
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
@@ -111,29 +109,10 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
         commodities: {_id: commod_id},
     },
 })
-.then(result=>{     
-  console.log(result) 
-//  return res.render("index", { commodities: result });
-res.redirect("/admin");
-
+.then(result=>{
+  res.json(result)
 
 }).catch(err=>console.log(err)) 
-
-// the below deletes every document that matched the id provided...it removed the whole document
-
-//  const newCommodity = Commodity.findByIdAndDelete({ _id:Object_id}, {
-//     $pull: {
-//         commodities: {_id: commod_id},
-//     },
-// })
-// .then(result=>{     
-//   console.log(result) 
-
-// //  return res.redirect('/admin')
-// //  res.render("index", { commodities: result });
-
-// }).catch(err=>console.log(err)) 
-
   
 });
 

@@ -20,7 +20,6 @@ const port=process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
-// const {authpage, authuser} =require('./middleware')
 
 const dbURI=process.env.KASUWA_dbURI
 app.use(express.static('public'))
@@ -31,7 +30,7 @@ mongoose.connect(dbURI, {useNewurlParser:true,useUnifiedTopology:true,})
 .catch((err)=>console.log(err))   
 
 app.get("/", (req, res)=>{
-  Commodity.find()
+  Commodity.find().sort({ _id: -1 }).limit(2)
   .then(response=>{
     res.json(response)
   })
