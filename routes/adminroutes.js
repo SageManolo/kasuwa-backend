@@ -20,7 +20,7 @@ router.post("/login", (req, res) => {
   try {
     const { uername, password } = req.body;
     const user = req.body;
-    console.log(user);
+    // console.log(user);
 
     if (!(username && password)) {
       res.status(400).send("All input is required");
@@ -69,10 +69,10 @@ router.get("/addcommodity",auth, (req, res) => {
 router.post("/addcommodity",auth, (req, res) => {
   const newCommodity = Commodity.find()
     .sort({ _id: -1 })
-    .findOneAndUpdate(
+    .findOneAndUpdate(   
       { name: "commodities" },
       { $push: { commodities: req.body } },
-      //   { upsert: false },
+        { upsert: false },
       function (err, passed) {
         if (err) {
           res.send(`collection error <a href='/admin'>home<a/>`);
@@ -113,7 +113,7 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
     result.remove()
 
   }
-  console.log(result)
+  // console.log(result)
   res.json(result)
 
 }).catch(err=>console.log(err)) 

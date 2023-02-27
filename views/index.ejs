@@ -45,7 +45,7 @@ p {
   }
   body {
     width:98vw;
-    font-size: 30px;
+    font-size: 40px;
 
     
   }
@@ -147,21 +147,24 @@ th{
         let id = deletebtn.id
         console.log(deletebtn.id)
         console.log(deletebtn.dataset.doc)
+        confirm('are you sure you want to delete item?')
         fetch(`/admin/delete:${Document_id}/commodities/:${id}`, {
             method: 'DELETE'
           })
           .then(response => response.json())
           .then(response => {
-            alert("delete successful, kindly refresh to make changes")
+            alert("item deleted successful")
+            location.reload()
           })
+          // location.reload()
       })
     })
 
     upDate.addEventListener("click", () => {
+      confirm('Are you sure you want to update all prices?')
       commodBlock.forEach((commod) => {
         let name = commod.querySelector(".commod").textContent
         let price = commod.querySelector(".price").textContent
-
         box.push({
           name: name,
           price: price
@@ -182,7 +185,8 @@ th{
         .then(response => response.json())
         .then(response => {
           console.log(JSON.stringify(response))
-          alert(`last database update successful, pls refresh on every update`)
+          alert(`last database update successful`)
+          location.reload()
         })
     })
   </SCript>
