@@ -98,7 +98,8 @@ th{
           <th scope="row"><%=serialNumber++ %></th>
           <td class="commod text-capitalize"><%= commod.name %></td>
           <td class="price" data-price="<%= commod.name %>" contenteditable><%= commod.price %></td>
-          <td class="text-center"><button type="button" class="btn btn-danger delete" data-doc="<%= commod.name %>" id="<%= commod.id %>"><a>DELETE</a></button> </td>
+          <td class="text-center"><a role="button" class="btn btn-danger delete" data-doc="<%= commod.name %>" id="<%= commod.id %>" >DELETE</a>
+          </td>
         </tr>
 
         <% }) %>
@@ -144,10 +145,10 @@ th{
 
     deletebtns.forEach(deletebtn => {
       deletebtn.addEventListener("click", () => {
-        let id = deletebtn.id
+        if (confirm('are you sure you want to delete item?')==true){
+          let id = deletebtn.id
         console.log(deletebtn.id)
         console.log(deletebtn.dataset.doc)
-        confirm('are you sure you want to delete item?')
         fetch(`/admin/delete:${Document_id}/commodities/:${id}`, {
             method: 'DELETE'
           })
@@ -156,12 +157,18 @@ th{
             alert("item deleted successful")
             location.reload()
           })
+        }
+        else{
+          alert("delete cancelled")
+        }
+      
           // location.reload()
       })
     })
 
     upDate.addEventListener("click", () => {
-      confirm('Are you sure you want to update all prices?')
+      
+    if (confirm('Are you sure you want to update all prices?')==true){
       commodBlock.forEach((commod) => {
         let name = commod.querySelector(".commod").textContent
         let price = commod.querySelector(".price").textContent
@@ -171,7 +178,7 @@ th{
         })
 
       })
-      // console.log(box)
+
       fetch('/admin/updateAll', {
           method: 'POST',
           headers: {
@@ -188,6 +195,12 @@ th{
           alert(`last database update successful`)
           location.reload()
         })
+    }
+    else{
+      location.reload()
+      alert("delete canceled")
+    }
+      
     })
   </SCript>
 
