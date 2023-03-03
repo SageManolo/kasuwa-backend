@@ -24,13 +24,11 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   console.log("got a log in request");
   const { username, password } = req.body;
-  // console.log(username);
-  // console.log(password);
+ 
 
   try {
     const { uername, password } = req.body;
     const user = req.body;
-    // console.log(user);
 
     if (!(username && password)) {
       res.status(400).send("All input is required");
@@ -44,7 +42,6 @@ router.post("/login", (req, res) => {
       const accessToken = jwt.sign({username:user.username, password:user.password}, process.env.TOKEN_KEY);
 
       res.cookie("kasuwa-access",accessToken, { maxAge: 1000*60*60 })
-      // res.render("index", {message:"welcome" });
 
       return res.redirect("/admin");
     }
@@ -54,7 +51,6 @@ router.post("/login", (req, res) => {
     }
   } catch (err) {
     return res.status(400).send("Invalid Credentials");
-    // res.json(err)
   }
 });
 
@@ -123,7 +119,6 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
     result.remove()
 
   }
-  // console.log(result)
   res.json(result)
 
 }).catch(err=>console.log(err)) 

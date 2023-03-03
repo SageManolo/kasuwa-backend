@@ -33,15 +33,7 @@ mongoose.connect(dbURI, {useNewurlParser:true,useUnifiedTopology:true,})
 .then(()=>console.log("connected to db"))
 .catch((err)=>console.log(err))   
 
-// app.get("/", (req, res)=>{
-//   Commodity.find().sort({ _id: -1 }).limit(2)
-//   .then(response=>{
-//     res.json(response)
-//   })
-//   .catch(err=>{
-//     res.json(err)
-//   })
-// })
+
 
 app.use('/public', publicroutes)
 app.use('/admin', adminroutes)
