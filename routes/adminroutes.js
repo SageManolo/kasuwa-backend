@@ -7,6 +7,16 @@ const auth = require("../middleware/auth");
 
 
 
+router.get("/pricehistory", (req, res)=>{
+  Commodity.find().sort({ _id: -1 })
+  .then(response=>{
+    res.json(response)
+  })
+  .catch(err=>{
+    res.json(err)
+  })
+})
+
 router.get("/login", (req, res) => {
   res.render("adminLogin");
 });
