@@ -7,7 +7,44 @@
 
   body{
     font-size: 30px;
-  }  
+    background-color: #eff4ec;
+  } 
+  .form-group{
+    text-align: center;
+  }
+  .labeled{
+    text-align: center;
+    color: #F19025;
+    
+  }
+
+  .btnbox{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+  }
+
+  .big-button{
+    font-size: 20px;
+
+  }
+  .primaryColor{
+    background-color:  #F19025;
+    transition: all 700ms ease;
+  }
+
+  .primaryColor:hover{
+    scale: 1.2;
+  }
+  .secondaryColor{
+    background-color: #364330;
+    transition: all 700ms ease;
+  }
+  .secondaryColor:hover{
+    scale: 1.2;
+  }
+
 </style>
 <body style="display:flex; align-items: center;">
 
@@ -16,16 +53,16 @@
       <form action="/admin/addcommodity" method="POST">
 
         <div class="form-group">
-          <label for="name">COMMODITY </label>
+          <label for="name" class="labeled">COMMODITY </label>
           <input type="name" id="name" name="name" style="text-transform: lowercase" placeholder="commodity name here" required class="form-control" />
         </div>
 
         <div class="form-group">
-          <label for="price">PRICE </label>
-          <input type="number" id="nice" name="price" placeholder="commodity price here" required class="form-control" />
+          <label for="price" class="labeled">PRICE </label>
+          <input type="number" id="pice" name="price" placeholder="commodity price here" required class="form-control" />
         </div>
         
-        <button type="submit" class="btn btn-success big-button">ADD</button> <a href="/admin" role="button"class="btn btn-primary big-button">HOME</a>
+        <div class="btnbox"><button type="submit" class="btn primaryColor big-button">ADD</button> <a href="/admin" role="button"class="btn secondaryColor big-button">HOME</a></div> 
       </form>
     </div>
   </div>

@@ -16,11 +16,34 @@ td{
 }
 body{
   font-size: 20px;
+  /* color: #6A6A6A; */
+  /* background-color: #bbbdba; */
 }
 p {
     font-size: 30px;     
     line-height: 1.3rem;   
 }
+.primaryColor{
+    background-color:  #F19025;
+    transition: all 500ms ease;
+  }
+  .primaryColor:hover{
+    scale: 1.1;
+  }
+
+  .secondaryColor{
+    background-color: #364330;
+    transition: all 500ms ease;
+  }
+  .secondaryColor:hover{
+    scale: 1.1;
+    /* color: ; */
+  }
+  .btn-box{
+    display: flex;
+  justify-content: center;
+  gap: 50px;
+  }
 
 
 @media screen and (max-width: 992px) {
@@ -74,7 +97,7 @@ th{
 
 
   <span id="id" style="font-size:0px;"><%=Commodityid%></span>
-  <h1 class="h1 text-center"> LAST UPDATED COMMODITY VS PRICE FOR KASUWA FARMS</h1>
+  <h1 class="h1 text-center" style="color: #F19025; font-weight: 700;"> LAST UPDATED COMMODITY VS PRICE FOR KASUWA FARMS</h1>
 
   <h1 id="message"><% message %></h1>
 
@@ -115,8 +138,9 @@ th{
 
   <% var comm_odities = commodities; %>
 
-  <div class="text-center"><a href="/admin/addcommodity" class="btn btn-primary big-button" href="#" role="button">ADD COMMODITY</a> <a id="update" role="button"class="btn btn-success big-button">UPDATE</a>
+  <div class="text-center btn-box"><a href="/admin/addcommodity" class="btn primaryColor big-button" href="#" role="button">ADD COMMODITY</a> <a id="update" role="button"class="btn secondaryColor big-button">UPDATE</a>
   </div>
+
   <SCript>
     let message = document.getElementById("message");
 
