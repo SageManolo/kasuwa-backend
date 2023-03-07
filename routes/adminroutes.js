@@ -125,6 +125,9 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
   
 });
 
+router.get("*", (req, res)=>{
+  res.redirect("/")
+  })
 
 
 module.exports = router;
