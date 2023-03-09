@@ -23,12 +23,13 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   console.log("got a log in request");
-  const { username, password } = req.body;
+  // const { username, password } = req.body;
  
 
   try {
-    const { uername, password } = req.body;
+    const { username, password } = req.body;
     const user = req.body;
+    // console.log("request...", req)
 
     if (!(username && password)) {
       res.status(400).send("All input is required");
@@ -55,6 +56,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/",auth, async (req, res) => {
+  console.log(req.cookies)
   try {
     Commodity.find()
       .sort({ _id: -1 })
@@ -73,7 +75,15 @@ router.get("/addcommodity",auth, (req, res) => {
 
 
 router.post("/addcommodity",auth, (req, res) => {
-  const newCommodity = Commodity.find()
+  // console.log(req.body.name)
+  Commodity.find().sort({_id:-1}).limit(1)
+  .then(result=>{
+   let duplicate = result[0].commodities.find(array=>array.name==req.body.name)
+   if(duplicate){
+    return res.send("already existing commodity <a href='/admin'>home<a/>")
+   }
+   else{
+    const newCommodity = Commodity.find()
     .sort({ _id: -1 })
     .findOneAndUpdate(   
       { name: "commodities" },
@@ -87,7 +97,11 @@ router.post("/addcommodity",auth, (req, res) => {
 
         }
       } 
-    );
+    )
+   }
+  })
+ 
+  ;
 });
  
 router.post("/updateAll",auth, (req, res) => {
@@ -125,7 +139,7 @@ router.delete("/delete:id/commodities/:item_id",auth, (req, res) => {
   
 });
 
-router.get("*", (req, res)=>{
+router.get("/*", (req, res)=>{
   res.redirect("/")
   })
 

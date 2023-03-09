@@ -25,19 +25,22 @@ p {
 }
 .primaryColor{
     background-color:  #F19025;
-    transition: all 500ms ease;
+    color: white;
+    transition: all 400ms ease;
   }
   .primaryColor:hover{
     scale: 1.1;
+    color: white;
   }
 
   .secondaryColor{
     background-color: #364330;
-    transition: all 500ms ease;
+    color: white;
+    transition: all 400ms ease;
   }
   .secondaryColor:hover{
     scale: 1.1;
-    /* color: ; */
+    color: white;
   }
   .btn-box{
     display: flex;
@@ -92,14 +95,13 @@ th{
   <%  Commodityid = commodities[0].id %>
   <% commodityName = commodities[0].name %>
   <% commodities = commodities[0].commodities %>
-  <% message = message %>
   <% let serialNumber = 1 %>
 
 
   <span id="id" style="font-size:0px;"><%=Commodityid%></span>
   <h1 class="h1 text-center" style="color: #F19025; font-weight: 700;"> LAST UPDATED COMMODITY VS PRICE FOR KASUWA FARMS</h1>
-
-  <h1 id="message"><% message %></h1>
+  
+  <!-- <h1 id="message"><% message %></h1> -->
 
   <table class="table table-bordered table-hover table-dark" >
     <thead class="thead-dark table-hover thead-dark">
@@ -113,7 +115,7 @@ th{
 
     <% if(commodities.length > 0){  %>
 
-    <tbody>
+    <tbody>   
 
         <% commodities.forEach(commod=>{ %>
 

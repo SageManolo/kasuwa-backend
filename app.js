@@ -9,13 +9,17 @@ const publicroutes = require("./routes/publicroutes")
 const app=express()
 fs = require("fs")
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash')
 const cors = require('cors');
 
  
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(cookieParser())
-app.use(express.urlencoded({ extended: true }));
+// app.use(session({ secret:process.env.SESSION_KEY }));
+app.use(flash());
 app.use(cors({
     origin: '*'
 }));
@@ -29,8 +33,6 @@ var indexPage = fs.readFileSync(__dirname + '/dist/index.html', 'utf8')
 
 app.set('view engine', 'ejs');
 const port=process.env.PORT || 9000;
-
-
 
 
 const dbURI=process.env.KASUWA_dbURI
@@ -52,7 +54,7 @@ app.get("*", function (req, res){
 })
 
 app.listen(port, () => { 
-  console.log(`Example app listening on port ${port}`)
+  console.log(`node Kasuwa listening on port ${port}`)
 })
 
 
