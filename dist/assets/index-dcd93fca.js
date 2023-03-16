@@ -158,6 +158,9 @@ h1{
   letter-spacing: 0em;
   margin:10px;
   // color:#6A6A6A;
+  @media (max-width: 450px) {
+    color:var(--color-primary2)
+  }
 
   span{
     color:var(--color-primary)
@@ -245,7 +248,7 @@ img{
   padding: 100px 83px 10px 83px;
   // margin-top:80px;
   // background:red;
-  min-width: 95vw;
+  min-width: 100%;
   max-width: 100vw;
 
   @media (max-width: 1500px) {
@@ -288,7 +291,7 @@ img{
     justify-content: center;
     // gap:2px;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 620px) {
     justify-content:space-around;
     gap:2px;
     // background:red;
@@ -345,7 +348,7 @@ text-align: left;
     }
 
 
-    @media (max-width: 420px) {
+    @media (max-width: 520px) {
     color:var(--color-primary2);
     padding:0px;
     // border:1px solid red;
@@ -448,7 +451,7 @@ span{
   @media (max-width: 420px) {
     // border:1px solid red;
     padding: 10px;
-    margin: 50px 0px;
+    margin: 30px 0px;
   }
 `,Ds=I.span`
   color: #f19025;
@@ -514,6 +517,7 @@ margin:200px 140px auto 140px;
 gap:40px;
 height:fit-content;
 
+
    
 
     @media (max-width: 1200px) {
@@ -526,11 +530,14 @@ height:fit-content;
       flex-wrap:wrap;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 450px) {
     margin:50px 0px auto 0px;
     grid-template-columns: 1fr;
     padding:10px;
 
+    h1{
+      text-transform:capitalize;
+    }
         
     }
 `,l0=I.div`
@@ -560,12 +567,6 @@ flex-direction:column;
 align-items:left;
 text-align:left;
 
-      @media only screen and (min-width: 1200px) and (max-width: 1900px) {
-        // flex: 1 1 0;
-        // width: 0;
-
-      }
-
     @media (max-width: 1400px) {
     
     }
@@ -576,11 +577,7 @@ text-align:left;
   
     }
 
-    @media (max-width: 300px) {
-    
-    }
-
-p{
+    p{
 font-weight: 400;
 font-size: 16px;
 line-height: 180%;
@@ -589,7 +586,7 @@ color: rgba(18, 17, 39, 0.56);
 
 
 
-@media (max-width: 420px) {
+@media (max-width: 520px) {
   text-align:center;
         color: #6A6A6A;
         font-size: 16px;
@@ -626,11 +623,11 @@ box-sizing: border-box;
   height: fit-content;
 
   @media (max-width: 1500px) {
-    margin: 200px 10px auto 10px;
+    margin: 100px 10px auto 10px;
     padding: 10px;
   }
-  @media (max-width: 420px) {
-    margin: 100px 10px 100px 10px;
+  @media (max-width: 700px) {
+    margin: 50px 10px 100px 10px;
     padding: 10px;
     // background:red;
   }
@@ -670,7 +667,7 @@ box-sizing: border-box;
       font-weight: 300;
       line-height: 1.4;
     }
-    @media (max-width: 420px) {
+    @media (max-width: 1000px) {
       color: #6a6a6a;
       font-size: 16px;
       font-weight: 300;
@@ -735,7 +732,8 @@ box-sizing: border-box;
   height: auto;
   transition: all 500ms ease;
 
-  @media (max-width: 420px) {
+  @media (max-width: 620px) {
+    // background:red;
     display:flex;
     flex: 100%;
     flex-direction: column;
@@ -754,6 +752,9 @@ box-sizing: border-box;
     color: #364330;
     margin-bottom: 30px;
     margin-top: 10px;
+    @media (max-width: 1000px) {
+      font-weight: 300;
+    }
     @media (max-width: 420px) {
       color: #364330;
       margin-top: 10px;
@@ -771,7 +772,11 @@ box-sizing: border-box;
     font-size: 16px;
     line-height: 24px;
     color: #000000;
-    @media (max-width: 420px) {
+    @media (max-width: 1000px) {
+      text-align: left;
+      color: #6a6a6a;
+    }
+    @media (max-width: 620px) {
       color: #6a6a6a;
       font-weight: 0;
       font-size: 16px;
@@ -791,7 +796,7 @@ box-sizing: border-box;
 
   @media (max-width: 420px) {
     // background:red;
-    margin: 40px auto;
+    margin: 20px auto;
   }
   h2 {
     display: inline;
@@ -800,38 +805,45 @@ box-sizing: border-box;
     font-size: 50px;
     line-height: 69px;
     color: #364330;
+
+    @media (max-width: 620px) {
+      font-weight: 400;
+    font-size: 35px;
+    line-height: 69px;
+    }
   }
 `,g0=I.div`
   box-sizing: border-box;
-  display: flex;
+  display: inline-flex;
   justify-content: space-around;
-  align-items: flex-end;
-  width: 100%;
+  align-items: center;
+  width: 100vw;
+  flex:no-wrap;
   gap: 2%;
+  overflow:auto;
   padding: 50px 10%;
 
   @media (max-width: 1500px) {
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     padding: 20px 10px;
     width: 100vw;
     gap: 10px;
   }
 
   @media (max-width: 620px) {
-    // width:fit-content;
     flex-direction:row;
-    overflow:hidden;
-    background:red; 
+    max-width:100vw;
+    overflow:auto;
     flex-wrap:no-wrap;
     justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
   }
 `,v0=I.img`
-  @media (max-width: 1500px) {
-    width: 20px;
-    height: 20px;
-  }
+  // @media (max-width: 1500px) {
+  //   width: 20px;
+  //   height: 20px;
+  // }
   @media (max-width: 1500px) {
     width: auto;
     height: auto;
@@ -845,6 +857,7 @@ box-sizing: border-box;
   margin-right: 50px;
   @media (max-width: 1000px) {
     margin-right: 0px;
+    // background:green;
   }
 `,_0=I.div`
   margin: 100px auto auto 70px;
@@ -856,7 +869,7 @@ box-sizing: border-box;
     padding: 10px;
   }
   @media (max-width: 420px) {
-    margin: 50px 5px auto 5px;
+    margin: 30px 5px auto 5px;
     padding: 10px;
   }
 `,z0=I.div`
@@ -870,15 +883,22 @@ box-sizing: border-box;
     justify-content: space-around;
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 620px) {
     justify-content: space-between;
-    margin: 30px auto 20px auto;
+    // align-items: center;
+    gap:50px;
+    margin: 10px auto 10px auto;
+    // background:green;
   }
   div{
     display:flex;
     justify-content:space-between;
     gap:10px;
     margin-bottom:80px;
+    // background:red;
+    @media (max-width: 420px) {
+      margin-bottom:0px;
+    }
   
     img{
       width:30px;
@@ -891,7 +911,7 @@ box-sizing: border-box;
     }
   
     @media (max-width:420px){
-      margin-top:60px
+      margin-top:20px
     }
   }
   
@@ -1029,6 +1049,11 @@ padding:90px 50px;
         margin:100px 20px;
         padding:20px 10px;
       }
+      @media (max-width: 1000px){
+        flex-direction:column;
+        margin:30px 10px;
+        gap:0px;
+      }
 
       @media (max-width: 420px){
         flex-direction:column;
@@ -1040,10 +1065,12 @@ padding:90px 50px;
 
 div{
   flex: 1 1 0px;
-  
+  @media (max-width: 450px){
+    flex: 1 1 auto;
+  }
   div{
 
-  @media (max-width: 420px){
+  @media (max-width: 450px){
     text-align:center;  
     margin-top:20px;
   }
@@ -1071,11 +1098,10 @@ h3{
       font-size: 33px;
       line-height: 35px;
     }
-    @media (max-width: 420px){
-      // display
+    @media (max-width: 450px){
       text-align:center;
       margin-bottom:20px;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 30px;
     }
 }
@@ -1085,8 +1111,13 @@ font-size: 14px;
 line-height: 24px;
 color: #1E293B;
 
-@media (max-width: 420px){
+@media (max-width: 1000px){
+  text-align:left;
+  color:#6A6A6A;
+}
+@media (max-width: 450px){
   text-align:center;
+  color:#6A6A6A;
 }
 }
 
@@ -1102,7 +1133,7 @@ a{
   transition:all 400ms ease;
   margin-top:20px;
 
-  @media (max-width: 420px){
+  @media (max-width: 450px){
     // margin:0 auto;
     background:white;
     margin-top:0px;
@@ -1114,11 +1145,13 @@ a{
 }
 `,T0=I.div`
   @media (max-width: 1500px) {
-    max-width: 100vw;
-    max-height: 100vw;
+    // max-width: 100vw;
+    // max-height: 100vw;
     min-width: 200px;
     min-height: 300px;
   }
+  @media (max-width: 450px) {
+    // display:none;
 `,cl=(e=!1)=>{const[t,n]=he.useState(e);return[t,()=>n(i=>!i)]},R0=()=>{const[e,t]=cl(),[n,r]=cl(),[i,o]=cl(),l={display:"flex",justifyContent:"space-between",placeItems:"center",alignContent:"center",paddingBlock:"50px",marginBottom:"30px",cursor:"pointer"};return R(L0,{children:[h("h2",{children:"Frequently Asked Questions"}),R("div",{children:[R("div",{style:{borderBottom:"2px solid #6A6A6A"},children:[R("div",{style:l,onClick:t,children:[h("h3",{children:"What is Kasuwa?"}),e?h("img",{src:"./images/arrowroundedup.svg",alt:""}):h("img",{src:"./images/arrowroundedown.svg",alt:""})]}),h(An,{children:e?h("p",{children:"The Agricultural Marketplace Kasuwa is the marketplace for agric commodities. A platform that offers payment, logistics, tracking and financial services."}):""})]}),R("div",{style:{borderBottom:"2px solid #6A6A6A"},children:[R("div",{style:l,onClick:r,children:[h("h3",{children:"How to create an order on Kasuwa?"}),n?h("img",{src:"./images/arrowroundedup.svg",alt:""}):h("img",{src:"./images/arrowroundedown.svg",alt:""})]}),h(An,{children:n?h("p",{children:"The Agricultural Marketplace Kasuwa is the marketplace for agric commodities. A platform that offers payment, logistics, tracking and financial services."}):""})]}),R("div",{style:{borderBottom:"2px solid #6A6A6A"},children:[R("div",{style:l,onClick:o,children:[h("h3",{children:"How to delete a created order?"}),e?h("img",{src:"./images/arrowroundedup.svg",alt:""}):h("img",{src:"./images/arrowroundedown.svg",alt:""})]}),h(An,{children:i?h("p",{children:"The Agricultural Marketplace Kasuwa is the marketplace for agric commodities. A platform that offers payment, logistics, tracking and financial services."}):""})]})]})]})},L0=I.div`
 
 margin:100px 140px;
@@ -1249,7 +1282,7 @@ flex-direction:column;
 div{
     // display:flex;
 }
-`;function D0(){const[e,t]=he.useState([]),[n,r]=he.useState({}),[i,o]=he.useState(!0);function l(){fetch("https://kasuwaapp7.onrender.com/public").then(a=>a.json()).then(a=>{let u=a[0].commodities,c=a[1].commodities;const g=(w,x)=>((w-x)/x*100).toFixed(2);let m=[],p=[];for(let w=0;w<u.length;w++){let x=!1;for(let k=0;k<c.length;k++)if(u[w].name==c[k].name){if(x)break;m[c[k].name]=g(u[w].price,c[k].price),p[c[k].name]=u[w].price,x=!0}}t(p),console.log(p),u.map(w=>w.price),c.map(w=>w.price),r(m),o(!1)}).catch(a=>{console.log(a)})}return he.useEffect(()=>{l()},[]),h(An,{children:R(U0,{commodities:e,commodityPercentage:n,children:[Object.keys(n).map(a=>h(j0,{name:a,price:e[a],percentage:n[a]})),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]})]})})}let F0=Vm`
+`;function D0(){const[e,t]=he.useState([]),[n,r]=he.useState({}),[i,o]=he.useState(!0);function l(){fetch("https://kasuwa.com/public").then(a=>a.json()).then(a=>{let u=a[0].commodities,c=a[1].commodities;const g=(w,x)=>((w-x)/x*100).toFixed(2);let m=[],p=[];for(let w=0;w<u.length;w++){let x=!1;for(let k=0;k<c.length;k++)if(u[w].name==c[k].name){if(x)break;m[c[k].name]=g(u[w].price,c[k].price),p[c[k].name]=u[w].price,x=!0}}t(p),console.log(p),u.map(w=>w.price),c.map(w=>w.price),r(m),o(!1)}).catch(a=>{console.log(a)})}return he.useEffect(()=>{l()},[]),h(An,{children:R(U0,{commodities:e,commodityPercentage:n,children:[Object.keys(n).map(a=>h(j0,{name:a,price:e[a],percentage:n[a]})),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]}),R("div",{style:{fontSize:"20px",color:"#6A6A6A"},children:[i&&"Loading..."," "]})]})})}let F0=Vm`
     0% {
       transform: translate3d(0, 0, 0);
     }
