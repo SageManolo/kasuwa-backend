@@ -29,13 +29,11 @@ router.post("/login", (req, res) => {
   try {
     const { username, password } = req.body;
     const user = req.body;
-    // console.log("request...", req)
 
     if (!(username && password)) {
       res.status(400).send("All input is required");
     }
     if (username != process.env.USER_ID && password != process.env.USER_KEY) {
-      console.log("hellllllo");
 
       res.status(400).send("Unauthorized Access");
     }
@@ -56,7 +54,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/",auth, async (req, res) => {
-  console.log(req.cookies)
+  // console.log(req.cookies)
   try {
     Commodity.find()
       .sort({ _id: -1 })

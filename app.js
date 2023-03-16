@@ -15,14 +15,15 @@ const cors = require('cors');
 
  
 
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(cookieParser())
 // app.use(session({ secret:process.env.SESSION_KEY }));
 app.use(flash());
-app.use(cors({
-    origin: '*'
-}));
+
 
 
 

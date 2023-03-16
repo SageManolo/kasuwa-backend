@@ -11,7 +11,6 @@ const auth = (req, res, next)=>{
     const validToken = jwt.verify(accessToken, process.env.TOKEN_KEY)
     if(validToken){
       req.authenticated= true
-      // console.log(validToken)
       return next();
 
     }
