@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Commodity = require("../models/commodity");
+const Commodity = require("../middleware/db/models/commodity");
 
 
 router.get("/", (req, res)=>{

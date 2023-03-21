@@ -3,7 +3,9 @@ const express=require('express');
 const ejs=require('ejs')
 require('dotenv').config();
 const mongoose=require('mongoose')
-const Commodity= require("./models/commodity");
+const Db = require('./middleware/db/connectdb')
+// import { connectDb } from './middleware/db/connectdb';
+const Commodity= require("./middleware/db/models/commodity");
 const adminroutes = require("./routes/adminroutes")
 const publicroutes = require("./routes/publicroutes")
 const app=express()
@@ -21,10 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: '*'
 }));
+// connect database
+Db.connectDb()
 
-// app.use(express.static(__dirname + "/dist"))
-// app.use('/static', express.static(__dirname + '/dist'))
-// var indexPage = fs.readFileSync(__dirname + '/dist/index.html', 'utf8')
 
 app.use(express.static(path.resolve(__dirname, '../kasuwa-react/dist')))
 
@@ -39,10 +40,10 @@ const port=process.env.PORT || 9000;
 const dbURI=process.env.KASUWA_dbURI
 // app.use(express.static('public'))
 
-mongoose.set('strictQuery', true);  
-mongoose.connect(dbURI, {useNewurlParser:true,useUnifiedTopology:true,})
-.then(()=>console.log("connected to db"))
-.catch((err)=>console.log(err))   
+// mongoose.set('strictQuery', true);  
+// mongoose.connect(dbURI, {useNewurlParser:true,useUnifiedTopology:true,})
+// .then(()=>console.log("connected to db"))
+// .catch((err)=>console.log(err))   
 
 
 
